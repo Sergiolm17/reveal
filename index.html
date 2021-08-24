@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>TCEOS</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="plugin/reveal.js-appearance/plugin/appearance/appearance.css"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-state="bienvenidos-a-tceos"><h2>TCEOS</h2></section>
+        <section data-state="cual-es-tu-nombre">
+          <h2>¿Cuál es tu nombre?</h2>
+          <input
+            placeholder="..."
+            autofocus
+            id="first_name"
+            type="text"
+            class="input animated bounceInLeft"
+            spellcheck="false"
+            data-ms-editor="true"
+          />
+          <div class="box">
+            <button class="navigate-next btn animated bounceInLeft">
+              Siguiente
+            </button>
+          </div>
+        </section>
+
+        <section data-transition="concave" data-state="somos-una">
+          Somos una agencia digital y te ofrecemos diferentes soluciones que
+          cubren todas las necesidades para asegurar la visibilidad, relevancia
+          y conversiones para tu negocio.
+          <!--
+            Gracias a la metodología de Growth
+          Marketing, ejecutamos campañas de marketing digital multicanal que
+          ayudan a empresas a adquirir y retener a sus clientes potenciales.
+          -->
+        </section>
+
+        <section data-state="servicios">
+          <section data-state="servicios">
+            <h2>SERVICIOS</h2>
+            <ul>
+              <li>
+                <a href="#/crecer">Crecer</a>
+              </li>
+              <li>
+                <a href="#/optimizar">Optimizar</a>
+              </li>
+              <li>
+                <a href="#/crear">Crear</a>
+              </li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <section data-state="crecer" id="crecer">
+            <h1>CRECER</h1>
+            <p>Un equipo de marketing digital completo o una extencion suya</p>
+          </section>
+          <section>
+            <ul>
+              <li>
+                Adquiera usuarios de calidad rapidamente,con campañas de medios
+                de pago multicanal.
+              </li>
+              <li>
+                Aumente el retorno de inversion publicitaria con la optimizacion
+                continua de la campaña.
+              </li>
+              <li>
+                Realice un crecimiento de los resultados en tiempo real,con
+                atribucion granual de la campaña.
+              </li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <section data-state="optimizar" id="optimizar">
+            <h1>OPTIMIZAR</h1>
+            <p>
+              Convierta mas trafico a su sitio o aplicacion en usuarios valiosos
+            </p>
+          </section>
+          <section>
+            <ul>
+              <li>
+                Optimice las paginas de destino,las experiencias de sitio y
+                perfiles en su E-commerce.
+              </li>
+              <li>Optimice los ingresos sin gastos adicionales en medios.</li>
+              <li>
+                Mejorar científicamente los embudos de conversion de clientes
+                para crecer mas rápido.
+              </li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <section data-state="crear" id="crear">
+            <h1>CREAR</h1>
+            <p>
+              Sobrealimenta sus campañas con creatividades de la próxima
+              generación.
+            </p>
+          </section>
+          <section>
+            <ul>
+              <li>
+                Obtenga creatividad publicitaria por subscripcion que permita
+                escalar sus campañas.
+              </li>
+              <li>Anuncios de alta gama.</li>
+              <li>
+                Subir de nivel con anuncios dinamicos basados en feed,
+                interactividad y personalización.
+              </li>
+            </ul>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="dist/howler.min.js"></script>
+    <script src="plugin/reveal.js-appearance/plugin/appearance/appearance.js"></script>
+    <script src="plugin/store/dist/store.legacy.min.js"></script>
+
+    <script>
+      Reveal.initialize({
+        backgroundTransition: "slide",
+        controls: false,
+        hash: true,
+        overview: false,
+        progress: false,
+        touch: false,
+        keyboard: false,
+
+        appearance: {
+          baseclass: "animated",
+          visibleclass: "in",
+          hideagain: true,
+          delay: 300,
+          appearevent: "slidetransitionend",
+        },
+        plugins: [Appearance],
+      });
+      var audioplay = false;
+      var speak = true;
+      /*
+      if (!store.get("speak")) {
+        speak = false;
+        Reveal.configure({ controls: true });
+        Reveal.configure({ touch: true });
+        Reveal.configure({ keyboard: true });
+      }
+*/
+      Reveal.on("bienvenidos-a-tceos", () => {
+        var sound2 = new Howl({
+          src: ["audio/bienvenidos-a-tceos.mp3"],
+          format: "mp3",
+          preload: true,
+        });
+        sound2.on("end", function () {
+          audioplay = false;
+          Reveal.next();
+        });
+        if (!audioplay && speak) {
+          audioplay = true;
+          sound2.play();
+        }
+      });
+
+      var cualestunombre = new Howl({
+        src: ["audio/cual-es-tu-nombre.mp3"],
+        format: "mp3",
+        sprite: {
+          track01: [0, 5000],
+          track02: [4500, 2000],
+        },
+        preload: true,
+      });
+      Reveal.on("cual-es-tu-nombre", () => {
+        if (store.get("user")) {
+          document.getElementById("first_name").value = store.get("user");
+          var sinoes = new Howl({
+            src: [
+              `http://localhost:3000/text-to-speech?phrase=Si no es ${store.get(
+                "user",
+              )}`,
+            ],
+            format: "mp3",
+            preload: true,
+          });
+          var lopuedescambiar = new Howl({
+            src: ["audio/lo-puedes-cambiar.mp3"],
+            format: "mp3",
+            preload: true,
+          });
+        }
+        if (!audioplay && speak) {
+          audioplay = true;
+          console.log("ff");
+          cualestunombre.play("track01");
+        }
+        cualestunombre.on("end", function () {
+          audioplay = false;
+          if (store.get("user")) {
+            sinoes.play();
+            sinoes.on("end", function () {
+              lopuedescambiar.play();
+            });
+          }
+          //Reveal.next();
+        });
+      });
+      Reveal.on("donde-trabajas", () => {
+        cualestunombre.on("end", function () {
+          audioplay = false;
+          //Reveal.next();
+        });
+        if (!audioplay && speak) {
+          audioplay = true;
+          cualestunombre.play("track02");
+        }
+      });
+      var fondo = new Howl({
+        src: ["audio/musica.mp3"],
+        format: "mp3",
+        volume: 0.2,
+        preload: true,
+        html5: true,
+      });
+
+      Reveal.on("somos-una", () => {
+        if (document.getElementById("first_name").value)
+          store.set("user", document.getElementById("first_name").value);
+
+        let name =
+          document.getElementById("first_name").value || store.get("user");
+        let name_empresa = "Cerveza Andina";
+        var hola = new Howl({
+          src: [`http://localhost:3000/text-to-speech?phrase=Hola ${name}`],
+          format: "mp3",
+          preload: true,
+        });
+        var somos_una = new Howl({
+          src: ["audio/somos-una.mp3"],
+          format: "mp3",
+          preload: true,
+        });
+        var visibilidad = true;
+
+        var empresa = new Howl({
+          src: [`http://localhost:3000/text-to-speech?phrase=${name_empresa}`],
+          sprite: {
+            track: [200, 2000],
+          },
+          format: "mp3",
+          preload: true,
+        });
+        hola.on("end", function () {
+          somos_una.play();
+        });
+        somos_una.on("end", function () {
+          audioplay = false;
+          Reveal.next();
+        });
+        empresa.on("end", function () {});
+        if (!audioplay && speak) {
+          audioplay = true;
+          fondo.play();
+          hola.play();
+        }
+      });
+      Reveal.on("te-sigues-preguntando", () => {
+        var sound2 = new Howl({
+          src: ["audio/te sigues preguntando.mp3"],
+          format: "mp3",
+          preload: true,
+        });
+        sound2.on("end", function () {
+          audioplay = false;
+          Reveal.next();
+        });
+        if (!audioplay && speak) {
+          audioplay = true;
+          sound2.play();
+        }
+      });
+      Reveal.on("servicios", () => {
+        var sound2 = new Howl({
+          src: ["audio/servicios.mp3"],
+          format: "mp3",
+          preload: true,
+        });
+        sound2.on("end", function () {
+          audioplay = false;
+          Reveal.next();
+        });
+        if (!audioplay && speak) {
+          audioplay = true;
+          sound2.play();
+        }
+      });
+      var detalleservicios = new Howl({
+        src: ["audio/detalles-servicios.mp3"],
+        format: "mp3",
+        sprite: {
+          crecer: [0, 6000],
+          optimizar: [7000, 8000],
+          crear: [15000, 9000],
+        },
+        preload: true,
+      });
+      Reveal.on("crecer", () => {
+        detalleservicios.on("end", function () {
+          audioplay = false;
+          Reveal.right();
+        });
+        if (!audioplay && speak) {
+          audioplay = true;
+          detalleservicios.play("crecer");
+        }
+      });
+      Reveal.on("optimizar", () => {
+        detalleservicios.on("end", function () {
+          audioplay = false;
+          Reveal.right();
+        });
+        if (!audioplay && speak) {
+          audioplay = true;
+          detalleservicios.play("optimizar");
+        }
+      });
+      Reveal.on("crear", () => {
+        detalleservicios.on("end", function () {
+          audioplay = false;
+          fondo.fade(0.2, 0, 1000);
+          store.set("speak", false);
+          speak = false;
+          Reveal.configure({ controls: true });
+          Reveal.configure({ touch: true });
+          Reveal.configure({ keyboard: true });
+        });
+        if (!audioplay && speak) {
+          audioplay = true;
+          detalleservicios.play("crear");
+        }
+      });
+    </script>
+  </body>
+</html>

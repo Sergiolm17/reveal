@@ -1,0 +1,130 @@
+/**
+ * Layout helpers.
+ */
+
+// Stretch an element vertically based on available space
+.reveal .stretch,
+.reveal .r-stretch {
+  max-width: none;
+  max-height: none;
+}
+
+.reveal pre.stretch code,
+.reveal pre.r-stretch code {
+  height: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
+}
+
+// Text that auto-fits it's container
+.reveal .r-fit-text {
+  display: inline-block; // https://github.com/rikschennink/fitty#performance
+  white-space: nowrap;
+}
+
+// Stack multiple elements on top of each other
+.reveal .r-stack {
+  display: grid;
+}
+
+.reveal .r-stack > * {
+  grid-area: 1/1;
+  margin: auto;
+}
+
+// Horizontal and vertical stacks
+.reveal .r-vstack,
+.reveal .r-hstack {
+  display: flex;
+
+  img,
+  video {
+    min-width: 0;
+    min-height: 0;
+    object-fit: contain;
+  }
+}
+
+.reveal .r-vstack {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.reveal .r-hstack {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+// Naming based on tailwindcss
+.reveal .items-stretch {
+  align-items: stretch;
+}
+.reveal .items-start {
+  align-items: flex-start;
+}
+.reveal .items-center {
+  align-items: center;
+}
+.reveal .items-end {
+  align-items: flex-end;
+}
+
+.reveal .justify-between {
+  justify-content: space-between;
+}
+.reveal .justify-around {
+  justify-content: space-around;
+}
+.reveal .justify-start {
+  justify-content: flex-start;
+}
+.reveal .justify-center {
+  justify-content: center;
+}
+.reveal .justify-end {
+  justify-content: flex-end;
+}
+.input {
+  width: 34rem;
+  height: 4rem;
+  background: #f2f2f2;
+  border: 1px solid #cccccc;
+  border-radius: 2rem;
+  outline: none;
+  font-size: 2rem;
+  color: #737373;
+  letter-spacing: 1px;
+  text-indent: 2rem;
+}
+.box {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.btn {
+  position: relative;
+  margin-top: 3%;
+  background: #055388;
+  border: 1px solid white;
+  padding: 20px;
+  font-size: 0.9em;
+  color: white;
+  box-shadow: 4px 4px 0px 0px white;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  transition: all 300ms ease-in-out !important;
+  left: 0;
+  top: 0;
+}
+
+.btn:hover {
+  left: 4px;
+  top: 4px;
+  box-shadow: 0 0 0 0 white;
+}
